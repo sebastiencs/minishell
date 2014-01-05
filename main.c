@@ -5,19 +5,29 @@
 ** Login   <chapui_s@epitech.net>
 **
 ** Started on  Tue Dec 10 15:55:30 2013 chapui_s
-** Last update Sat Dec 21 17:49:50 2013 Sebastien Chapuis
+** Last update Sun Jan  5 15:46:41 2014 Sebastien Chapuis
 */
 
 #include <stdio.h>
 #include <unistd.h>
 #include "minishell.h"
 
+char	**begin_env(char **env)
+{
+  if (access("/usr/bin", X_OK) != -1)
+    if (my_setenv(&env, "PATH", "/usr/bin") == -1)
+      return (NULL);
+  return (env);
+}
+
 int	main(int argc, char **argv, char **environ)
 {
   int	res_exec;
 
   res_exec = 1;
-
+  if (*environ == NULL)
+    if ((environ = begin_env(environ)) == NULL)
+      return (my_putstr_error("Could not alloc\n"));
   while (res_exec == 1)
   {
     res_exec = exec_cmd(environ, NULL, NULL, NULL);

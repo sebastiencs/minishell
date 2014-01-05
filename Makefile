@@ -5,7 +5,7 @@
 ## Login   <sebastien@epitech.net>
 ## 
 ## Started on  Wed Dec 18 17:17:54 2013 Sebastien Chapuis
-## Last update Sat Dec 21 16:19:15 2013 Sebastien Chapuis
+## Last update Sun Jan  5 13:26:35 2014 Sebastien Chapuis
 ##
 
 SRC	= main.c \
@@ -26,13 +26,12 @@ SRC	= main.c \
 	  my_strcmp.c \
 	  my_cd.c \
 	  my_str_to_wordtab.c \
+	  prompt.c \
 	  utils.c \
 	  utils2.c \
 	  signal.c
 
 NAME	= mysh
-
-CFLAGS	= -ggdb
 
 OBJ	= $(SRC:.c=.o)
 

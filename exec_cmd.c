@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.net>
 **
 ** Started on  Tue Dec 10 19:58:57 2013 chapui_s
-** Last update Sat Dec 21 18:49:58 2013 Sebastien Chapuis
+** Last update Sun Jan  5 15:55:18 2014 Sebastien Chapuis
 */
 
 #include <stdlib.h>
@@ -13,14 +13,11 @@
 #include <signal.h>
 #include "minishell.h"
 
-// TEST SETENV AVEC /bin/csh //
-
 static int	is_builtin(t_cmd *cmd)
 {
   if (my_strcmp(cmd->filename, "setenv") == 0
       || my_strcmp(cmd->filename, "cd") == 0
       || my_strcmp(cmd->filename, "unsetenv") == 0
-      || my_strcmp(cmd->filename, "print_env") == 0
       || my_strcmp(cmd->filename, "exit") == 0
       || my_strcmp(cmd->filename, "env") == 0)
     return (1);
@@ -53,9 +50,9 @@ static void	wait_child(void)
   if (WIFSIGNALED(status))
   {
     if (WTERMSIG(status) == 11)
-      my_putstr_error("Segfault ! -> learn to code\n");
+      my_putstr_error("Segfault !\n");
     else if (WTERMSIG(status) == 8)
-      my_putstr_error("Arithmetic error ! -> 4 + 2 = ?\n");
+      my_putstr_error("Arithmetic error !\n");
     else
       my_putstr_error("Killed\n");
   }
@@ -94,8 +91,8 @@ int	exec_cmd(char **environ, t_read *list_read, t_cmd *cmd, char *str)
   int	ret_exit;
   char	c_read;
 
-  write(1, "$>", 2);
   c_read = 0;
+  prompt(environ);
   signal(SIGINT, get_first_sigint);
   while (read(0, &c_read, 1) > 0 && c_read != '\n')
     if ((push_read(&list_read, c_read, environ)) == -1)

@@ -5,7 +5,7 @@
 ** Login   <chapui_s@epitech.net>
 **
 ** Started on  Tue Dec 10 16:17:05 2013 chapui_s
-** Last update Sat Dec 21 18:33:46 2013 Sebastien Chapuis
+** Last update Sun Jan  5 13:26:51 2014 Sebastien Chapuis
 */
 
 typedef struct	s_read
@@ -60,3 +60,4 @@ int		my_exit(char *str);
 int		my_cd(char *path, char **env);
 char		*search_in_env(char **env, char *var);
 int		my_putstr_error(char *str);
+void		prompt(char **env);
